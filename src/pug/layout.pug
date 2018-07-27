@@ -1,0 +1,19 @@
+//- layout
+include mixins
+
+doctype html
+html(lang='ru-RU')
+	head
+		meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1.0')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		link(href='css/main.css' rel='stylesheet')
+		block head
+	body.loading
+		.preloader#preloader
+			.preloader-clock
+
+		block body
+		block footer
+		block modals
+		script(src='js/main.js' type='text/javascript')

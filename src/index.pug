@@ -1,0 +1,27 @@
+extends pug/layout
+
+block head
+	title iQB technology
+
+block body
+	- var page = 'home';
+	
+	section.page
+		include pug/header
+
+		main.main
+			include pug/page/home
+
+block footer
+	include pug/footer
+
+block modals
+	.modal.fade#modal-feedback(role='dialog' tabindex='1')
+		.modal-dialog(role='document')
+			button.close(data-dismiss='modal' aria-label='Close')
+				i.i.i-plus
+			.modal-content
+				.modal-body
+					h5.modal-title Написать письмо
+					p.modal-subtitle
+						|Заполните форму ниже и мы ответим вам в ближайшее время

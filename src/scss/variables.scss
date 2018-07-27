@@ -1,0 +1,33 @@
+$darkblue: #090A0F;
+$darkblueeasy: #111621;
+$red: #CC2132;
+$bluegray: #373a52;
+$dark: $bluegray;
+$white: #fff;
+
+/* Bootstrap */
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-second: 'Neo Sans Pro', 'Open Sans', sans-serif;
+$font-size-base: 1.6rem;
+$line-height-base: 1.5;
+$body-color: $dark;
+$body-bg: $white;
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1500px
+) !default;
+
+$container-max-widths: (
+	//sm: 100%,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px,
+	xxl: 1440px
+) !default;

@@ -1,0 +1,186 @@
+- 
+	const aNav = [{
+		name: 'Отрасли', 
+		sub: [
+			'Отрасль первая', 
+			'Отрасль вторая', 
+			'Отрасль третья'
+		]
+	}, {
+		name: 'Материалы и&nbsp;технологии', 
+		sub: [
+			'Литейные процессы', 
+			'История внедрения', 
+			'Контроль конструкции моста'
+		]
+	}, {
+		name: '3D&ndash;оборудование и&nbsp;3D&ndash;СОФТ', 
+		sub: [
+			'Оборудование первое', 
+			'Программное обеспечение'
+		]
+	}, {
+		name: 'Производственные задачи', 
+		sub: [
+			'Задача 1', 
+			'Задача 2', 
+			'Задача 3'
+		]
+	}, {
+		name: 'О&nbsp;компании', 
+		sub: [
+			'Общая информация', 
+			'Проекты', 
+			'Партнёры'
+		]
+	}]
+
+	const headerSlider = [{
+		category: 'Промышленные 3D&ndash;принтеры',
+		name: 'BMW открывает новую эру в&nbsp;автомобилестроении',
+		text: 'Какой-то небольшой текст-дискриптор описывающий назначение и&nbsp;услуги компании для завлечения клиента в подробную статью или страницу.'
+	}, {
+		category: 'Промышленные 3D&ndash;санеры',
+		name: 'KIA закрывает старую эру в&nbsp;автомобилестроении',
+		text: 'Простой текст-дискриптор описывающий назначение и&nbsp;услуги компании для завлечения клиента в подробную статью или страницу.'
+	}, {
+		category: 'Программное обеспечение',
+		name: 'Простой текст-дискриптор',
+		text: 'Назначение и услуги компании для завлечения клиента в&nbsp;подробную статью или страницу.'
+	}, {
+		category: 'Обеспечение программное',
+		name: 'Текст-дискриптор обычный',
+		text: 'Услуги компании для завлечения клиента в&nbsp;подробную статью или страницу.'
+	}, {
+		category: 'Промышленные 3D&ndash;санеры',
+		name: 'KIA закрывает старую эру в&nbsp;автомобилестроении',
+		text: 'Простой текст-дискриптор описывающий назначение и&nbsp;услуги компании для завлечения клиента в подробную статью или страницу.'
+	}]
+
+.right-fixed
+	a.right-fixed-btn(href='javascript:void(0)')
+		+i-svg('phone')
+	a.right-fixed-btn(href='javascript:void(0)')
+		+i-svg('mail')
+
+header(class='header header-'+ page)
+	nav.navbar.navbar-expand-xl
+		.container-fluid
+			a.navbar-brand(href='/')
+				+i-svg('logo')
+				span.navbar-brand-label 
+					|3D-решения
+					br
+					|для промышленности и бизнеса
+
+			.d-flex.order-xl-3
+				form.header-search
+					.header-search-field#searchNav
+						input.form-control(type='text' placeholder='Найти')
+					button.btn.btn-link#btnTglSearchNav(type='submit')
+						+i-svg('search')
+				//- 
+					button.navbar-toggler(
+						type='button' 
+						data-toggle='collapse' 
+						data-target='#headerNavExtra' 
+						aria-controls='headerNavExtra' 
+						aria-expanded='false' 
+						aria-label='Toggle navigation'
+					)
+						+i-svg('menu')
+				button.navbar-toggler#btnShowExtraNav
+					+i-svg('menu')
+
+			.collapse.navbar-collapse#headerNavbar
+				ul.navbar-nav.m-auto
+
+					each item, ind in aNav 
+						li(class=(ind === 0 ? 'nav-item active' : 'nav-item'))
+							a.nav-link(href='javascript:void(0)')
+								span
+									|!{item.name}
+
+					li.nav-item
+						a.nav-link(href='javascript:void(0)')
+							.d-flex
+								.align-self-center.mr-3
+									+i-svg('blog')
+								.align-self-center 
+									|Блог
+									br
+									|3D&ndash;экспертов
+
+			.header-extra-nav#headerExtraNav
+				button.btn.btn-link.btn-close#btnHideExtraNav
+					+i-svg('to-right')
+
+				ul.collapse-nav
+					each item in aNav 
+						li
+							a(href='javascript:void(0)')
+								|!{item.name}
+							ul
+								each sub in item.sub
+									li
+										a(href='javascript:void(0)')
+											|!{sub}
+
+				a.icon-blog-link(href='javascript:void(0)')
+					.row-icon
+						+i-svg('blog')
+						span Блог 3D&ndash;экспертов
+				
+				.row
+					.col-sm-6
+						address.inbar-address
+							a(href='tel:+7(499)3800791') +7 (499) 380-07-91
+							br
+							a(href='mailto:in@iqdtech.ru') in@iqdtech.ru
+
+					.col-sm-6
+						.lng-swith
+							.row-icon
+								+i-svg('world')
+								select
+									option Русский
+									option English
+
+				p.soc-title Мы в социальных сетях:
+				+soc-list()
+	
+	section.header-sliders-wrap
+		.header-slider-wrap
+			ul.header-slider#headerSlider
+
+				each item, ind in headerSlider 
+					li.header-slider-item
+						figure
+							.header-slider-img(style=`background-image:url(upload/home-s-1-${(ind+1)}.jpg);`)
+								//-img(src='upload/home-s-1-'+ (ind+1) +'.jpg')
+
+							figcaption.header-slider-info
+								.container
+									.header-slider-inner
+
+										a.header-slider-category(href='javascript:void(0)')
+											|!{item.category}
+										h3.header-slider-title 
+											|!{item.name}
+										p.header-slider-text
+											|!{item.text}
+										a.header-slider-link(href='javascript:void(0)')
+											|Подробнее о внедрении проекта
+			.slick-navigation
+				.container
+					button.slick-prev
+						+i-svg('prev')
+					button.slick-next
+						+i-svg('next')
+
+		ul.header-slider-tiles#headerSliderTiles
+			each item, ind in headerSlider 
+				li
+					.header-slider-tiles-item
+						.header-slider-tiles-title 
+							|!{item.name}

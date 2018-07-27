@@ -1,0 +1,19 @@
+mixin i-svg (name, mod)
+	- mod = mod || ''
+	svg(class='i-svg i-svg-'+ name +' '+ mod)
+		use(xlink:href='img/sprite.svg#i-svg-'+ name)
+
+mixin soc-list ()
+	ul.soc-list
+		li
+			a.soc-vk(href='#' target='_blank')
+				+i-svg('soc-vk')
+		li
+			a.soc-fb(href='#' target='_blank')
+				+i-svg('soc-fb')
+		li
+			a.soc-in(href='#' target='_blank')
+				+i-svg('soc-in')
+		li
+			a.soc-yt(href='#' target='_blank')
+				+i-svg('soc-yt')
