@@ -1,5 +1,4 @@
 footer.footer
-	.stages-decor.stages-decor-top
 	.container-fluid
 		.row
 			.col-md-6
@@ -7,65 +6,28 @@ footer.footer
 					.col-xl-6
 						a.footer-brand(href='/')
 							+i-svg('logo')
-						p.footer-copy
-							|© 2017 на JSC "IQB Technologies" 
-							br
-							|АО "АЙКЬЮБ Технологии" 
-							br
-							|Все права защищены.
 					
 						.d-none.d-xl-block
 							p.soc-title Мы в социальных сетях:
 							+soc-list()
 
 					.col-xl-6
-						nav.footer-nav.mt-4
-							ul
-								li
-									a(href='javascript:void(0)') Отрасли применения 3D&ndash;технологий
-								li
-									a(href='javascript:void(0)') Каталог 3D&ndash;оборудования и ПО
-								li
-									a(href='javascript:void(0)') Технологические решения
-								li
-									a(href='javascript:void(0)') О компании
+						address.inbar-address 
+							a(href='tel:+7(499)3800791') +7 (999) 000-00-00
+							br
+							a(href='mailto:in@iqdtech.ru') inerto@potreqy.com
 
-						a.more-link(href='javascript:void(0)')
-							.row-icon 
-								+i-svg('more-circle')
-								span Спецпредложения
-
-						.d-none.d-md-block.d-xl-none
-							p.soc-title Мы в социальных сетях:
-							+soc-list()
+						p.footer-copy
+							|© 2017 copyright
 
 			.col-md-6
 				.row
 					.col-xl-6
-						a.icon-blog-link(href='javascript:void(0)')
-							.row-icon
-								+i-svg('blog')
-								span Блог 3D&ndash;экспертов
-
 						form.form.form-subscribe
 							input.form-control(type='email' placeholder='Ваш e-mail')
-							button.btn.btn-block.btn-light(type='submit') подписаться на блог
+							button.btn.btn-block.btn-light(type='submit') Subscribe
 
 					.col-xl-6
-						address.inbar-address 
-							a(href='tel:+7(499)3800791') +7 (499) 380-07-91
-							br
-							a(href='mailto:in@iqdtech.ru') in@iqdtech.ru
-
-						nav.footer-nav.mb-4
-							ul
-								li
-									a(href='javascript:void(0)') Политика конфиденциальности
-								li
-									a(href='javascript:void(0)') FAQ
-								li
-									a(href='javascript:void(0)') Словарь 3D-терминов
-
 						.lng-swith
 							.row-icon
 								+i-svg('world')
@@ -81,7 +43,25 @@ footer.footer
 							span Разработано в 
 							+i-svg('osd')
 
-	.vertline-wrap
-		.vertline.m-one
-		.vertline.m-two
-		.vertline.m-three
+block modals
+	.modal.modal-video.fade#modalVideo(role='dialog' tabindex='1')
+		.modal-dialog(role='document')
+			button.close(data-dismiss='modal' aria-label='Close')
+			.modal-content
+				.modal-video-player#moadalVideoPlayer
+
+	.modal.modal-image.fade#modalImage(role='dialog' tabindex='1')
+		.modal-dialog(role='document')
+			button.close(data-dismiss='modal' aria-label='Close')
+			.modal-content
+				img(src='' alt=' ')
+				
+	.modal.modal-feedback.fade#modalFeedback(role='dialog' tabindex='1')
+		.modal-dialog(role='document')
+			button.close(data-dismiss='modal' aria-label='Close')
+				i.i.i-plus
+			.modal-content
+				.modal-body
+					h5.modal-title Написать письмо
+					p.modal-subtitle
+						|Заполните форму ниже и мы ответим вам в ближайшее время

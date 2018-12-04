@@ -12,7 +12,8 @@ $( () => {
 		w = $(window).width();
 		h = $(window).height();
 
-		
+		Aside.resize();
+
 	}).on('load', (evt) => {
 
 		Preloader.hidden();
@@ -20,6 +21,10 @@ $( () => {
 	})
 
 	Header.init();
+
+	if ($('.nav-tabs').length) {
+		
+	}
 
 	if ($('#headerSlider').length) {
 		$('#headerSlider').slick({
@@ -29,27 +34,206 @@ $( () => {
 			nextArrow: $('.header-slider-wrap .slick-next'),
 			fade: true,
 			slidesToShow: 1,
-			slidesToScroll: 1,
-			asNavFor: '#headerSliderTiles'
+			slidesToScroll: 1
 		});
 	}
-	if ($('#headerSliderTiles').length) {
-		$('#headerSliderTiles').slick({
-			infinite: true,
-			arrows: false,
-			slidesToShow: 4,
+
+	if ($('.site-slider').length) {
+		$('.site-slider').on('init reInit afterChange', (event, slick, currentSlide, nextSlide) => {
+			const ind = (currentSlide ? currentSlide : 0);
+			const title = $(slick.$slides.get(currentSlide)).data('title');
+
+			$('.site-slider-info__cnt').empty().append(
+				$('<span/>', {text: ind + 1}),
+				$('<span/>', {text: slick.slideCount})
+			);
+			$('.site-slider-info__title').fadeOut(200, () => {
+				$('.site-slider-info__title').html(title).fadeIn(200);
+			})
+		});
+		$('.site-slider').slick({
+			slidesToShow: 1,
 			slidesToScroll: 1,
-			focusOnSelect: true,
-			asNavFor: '#headerSlider',
+			dots: false,
+			arrows: true,
+			infinite: true,
+			speed: 500,
+			cssEase: 'ease-in',
+			variableWidth: true,
+			variableHeight: true,
+			centerMode: true,
+			centerPadding: 0,
+			prevArrow: $('.site-slider-wrap .slick-prev'),
+			nextArrow: $('.site-slider-wrap .slick-next'),
 			responsive: [{
-				breakpoint: 992,
+				breakpoint: 576,
 				settings: {
-					variableWidth: true
+					arrows: false
 				}
 			}]
 		});
 	}
+
+	$('.form-group').each((i, eElem) => {
+		const eField = $(eElem).find('input, textarea');
+
+		eField.on('focus', (evt) => {
+			$(evt.currentTarget).parents('.form-group').addClass('active-label');
+
+		}).on('blur', (evt) => {
+			if ($(evt.currentTarget).val().length == 0) 
+				$(evt.currentTarget).parents('.form-group').removeClass('active-label');
+		});
+		if (eField.val() != '') $(eElem).addClass('active-label');
+	})
+
+	$('.view-image').on('click', (evt) => {
+		$('#modalImage img').attr('src', $(evt.currentTarget).data('view')); 
+		$('#modalImage').modal('show');
+	});
+
+	СatalogCart.init();
+	Aside.init();
+	VideoModal.init();
+
 })
+
+const СatalogCart = {
+	init () {
+		this.slider = $('#sliderCart').slick({
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			arrows: false,
+			dots: false,
+			fade: true,
+			asNavFor: '#sliderCartThumb',
+			focusOnSelect: true
+		});
+		this.sliderThumbs = $('#sliderCartThumb').slick({
+			slidesToShow: 3,
+			slidesToScroll: 1,
+			asNavFor: '#sliderCart',
+			arrows: true,
+			prevArrow: '<button class="slick-prev"><svg class="i-svg i-svg-prev "><use xlink:href="#i-svg-prev"></use> </svg></button>',
+			nextArrow: '<button class="slick-next"><svg class="i-svg i-svg-prev "><use xlink:href="#i-svg-next"></use> </svg></button>',
+			dots: false,
+			centerMode: false,
+			variableWidth: false,
+			focusOnSelect: true,
+			responsive: [{
+				breakpoint: 768,
+				settings: {
+					arrows: false
+				}
+			}]
+		});
+
+		$('#sliderCart .slick-slide').click(() => {
+    		this.slider.slick('slickNext');
+		});
+	}
+}
+
+const Aside = {
+	init () {
+		this.eExpandAll = $('.aside-title').next();
+
+		Aside.resize();
+		
+		$('.aside-title').on('click', (evt) => {
+			this.accord($(evt.currentTarget));
+		})
+	},
+	resize () {
+		if (w < 992) {
+			this.eExpandAll.hide();
+		} else {
+			this.eExpandAll.show();
+		}
+	},
+	accord (eElem) {
+		const eExpand = eElem.next();
+		if (eExpand.is(':hidden')) {
+			this.eExpandAll.slideUp(250);
+			eExpand.slideDown(250);
+		}
+	}
+}
+
+function onYouTubePlayerAPIReady () {
+	$(function () {
+		VideoModal.createPlayer();
+	})
+}
+
+const VideoModal = {
+	init () {
+		let scriptYoutube = document.createElement('script');
+		scriptYoutube.src = 'https://www.youtube.com/iframe_api';
+		let firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(scriptYoutube, firstScriptTag);
+
+		$('.play-video').addClass('play-disabled').attr('disabled', 'disabled');
+		$('.play-video').on('click', (evt) => {
+			VideoModal.play($(evt.currentTarget).data('play'));
+			$('#modalVideo').modal('show');
+		});
+
+		$('#modalVideo .close').on('click', (evt) => {
+			VideoModal.stop();
+			$('#modalVideo').modal('hide');
+		});
+	},
+
+	createPlayer () {
+		var _this = this;
+
+		this.player = new YT.Player('moadalVideoPlayer', {
+			playerVars: {
+				modestbranding: 0,
+				branding: 0,
+				autoplay: 1,
+				controls: 1,
+				rel: 0,
+				loop: 0,
+				wmode: 'opaque',
+				showinfo: 0,
+				playlist: ''
+			},
+			videoId: '',
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onStateChange
+			}
+		});
+
+		function onStateChange (evt) {
+			if (event.data == YT.PlayerState.ENDED) {
+				//_this.player.playVideo();
+			}
+		}
+		function onPlayerReady (evt) {
+			$('.play-video').removeAttr('disabled').removeClass('play-disabled');
+			//e.target.mute();
+			//e.target.playVideo();
+		}
+		//this.player.pauseVideo();
+		//this.player.playVideo();
+	},
+
+	play (sVideoId) {
+		this.player.loadVideoById({
+			'videoId': sVideoId,
+			//'startSeconds': 0,
+			//'endSeconds': 60,
+			'suggestedQuality': 'default'
+		});
+	},
+
+	stop (sVideoId) {
+		this.player.stopVideo();
+	}
+}
 
 const Header = {
 

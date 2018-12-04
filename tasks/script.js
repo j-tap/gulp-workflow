@@ -6,7 +6,7 @@ gulp.task('js', () => {
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(concatJs('main.js'))
-		.pipe(uglify())
+		//.pipe(uglify()) // compress
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(dir.build +'/js'));
 });

@@ -1,9 +1,15 @@
-$darkblue: #090A0F;
-$darkblueeasy: #111621;
-$red: #CC2132;
-$bluegray: #373a52;
+/*			Variables
+*/
+$darkblue: #1b3142;
+$darkblueeasy: #313c55;
+$red: #c90cb0;
+$bluegray: #414b53;
+$bluegrayhard: #1f2730;
 $dark: $bluegray;
 $white: #fff;
+$bluelightgray: rgb(117, 146, 167);
+$graylight: #e5e5e5;
+$blue: $bluegray;
 
 /* Bootstrap */
 $grid-columns: 12 !default;
@@ -14,6 +20,7 @@ $font-size-base: 1.6rem;
 $line-height-base: 1.5;
 $body-color: $dark;
 $body-bg: $white;
+$form-group-margin-bottom: 3rem;
 
 $grid-breakpoints: (
 	xs: 0,

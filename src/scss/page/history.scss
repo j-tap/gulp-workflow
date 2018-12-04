@@ -1,0 +1,10 @@
+/*			page History
+*/
+.block-history-1 {
+	
+	.img-full {
+		@include media-breakpoint-down (sm) {
+			margin-top: -4rem;
+		}
+	}
+}

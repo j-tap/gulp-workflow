@@ -1,37 +1,12 @@
-/*			FOOTER 			
+/*			Footer
 */
-.page {
-	@include media-breakpoint-up (xl) {
-		margin-bottom: 39rem;
-		z-index: 2;
-	}
-}
-
 .footer {
 	overflow: hidden;
-	background: url('') no-repeat 50% 0 #393e4d;
+	background: none no-repeat 50% 0 $darkblue;
 	background-size: cover;
 	color: $white;
 	padding: 5rem 0 0;
 	position: relative;
-	
-	@include media-breakpoint-up (xl) {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 39rem;
-	}
-	
-	.stages-decor {
-		background-color: $white;
-		&-top {
-			top: 0;
-			&:before {
-				top: 0;
-			}
-		}
-	}
 	
 	&-brand {
 		display: inline-block;
@@ -76,36 +51,8 @@
 		line-height: 1.2;
 	}
 
-	.soc-title {
-		margin-top: 5rem;
-	}
 	.soc-list {
 		
-	}
-
-	&-nav {
-		margin-bottom: 5rem;
-		
-		ul {
-			
-		}
-		li {
-			margin-bottom: 1.5rem;
-		}
-		a {
-			font-size: 1.4rem;
-			text-decoration: underline;
-		}
-	}
-
-	.icon-blog-link {
-		font-size: 1.8rem;
-		font-weight: 600;
-		
-		.i-svg {
-			width: 6rem;
-			height: 6rem;
-		}
 	}
 
 	&-developer {
@@ -126,7 +73,7 @@
 			text-decoration: none;
 
 			.i-svg {
-				fill: #b41c33;
+				fill: $red;
 			}
 		}
 
@@ -150,12 +97,6 @@
 		@include media-breakpoint-down (sm) {
 			margin-bottom: 2rem;
 		}
-	}
-
-	.more-link {
-		font-size: 1.4rem;
-		text-transform: uppercase;
-		font-weight: 500;
 	}
 
 	.form-control {

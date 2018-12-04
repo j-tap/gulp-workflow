@@ -1,79 +1,151 @@
--
-	const oDirections = [{
-		name: 'Дистрибутор',
-		text: 'Представляем 3D&ndash;оборудование и&nbsp;ПО от&nbsp;ведущих мировых производителей'
-	},{
-		name: 'iQB Lab',
-		text: 'Разрабатываем отраслевые решения на&nbsp;базе современных 3D&ndash;технологий'
-	},{
-		name: 'Учебный центр iQB ',
-		text: 'Обучаем специалистов применять 3D&ndash;технологии в&nbsp;профессиональной деятельности '
-	},{
-		name: 'RP&ndash;центр iQB',
-		text: 'Предоставляем услуги 3D&ndash;сканирования, 3D&ndash;моделирования и&nbsp;3D&ndash;печати в&nbsp;нашем центре прототипирования'
-	}]
+extends ../layout
 
-	const oAdv = [{
-		num: 50,
-		icon: '3d-square',
-		name: 'Более 50 реализованных проектов в 20 отраслях'
-	}, {
-		num: 15,
-		icon: '3d-disc',
-		name: 'Более 15 принтеров и сканеров в демо-зале'
-	}, {
-		num: 30,
-		icon: '3d-ball',
-		name: 'Более 30 экспертов 3D в команде'
-	}, {
-		num: 7,
-		icon: '3d-pyr',
-		name: '7 разных технологий  печати'
-	}]
+block vars
+	- 
+		const page = 'home'
+		const pageTitle = 'Главная'
 
-	const oNews = [{
-		date: '18/04',
-		name: 'BMW открывает новую эру в автомобилестроении',
-		text: 'На крупнейшей промышленной выставке России 3D-решения впервые были представлены на отдельной площадке. Читайте наш подробный отчет!',
-	},{
-		date: '18/04',
-		name: 'ACADEMIA – новые 3D-сканеры и ПО для образования и науки',
-		text: 'Новинка Creaform – это комплект, включающий профессиональные 3D-сканеры, бесплатное интегрированное ПО и дидактические материалы.',
-	},{
-		date: '18/04',
-		name: 'BMW открывает новую эру в автомобилестроении',
-		text: 'На крупнейшей промышленной выставке России 3D-решения впервые были представлены на отдельной площадке. Читайте наш подробный отчет!',
-	},{
-		date: '18/04',
-		name: 'ACADEMIA – новые 3D-сканеры и ПО для образования и науки',
-		text: 'Новинка Creaform – это комплект, включающий профессиональные 3D-сканеры, бесплатное интегрированное ПО и дидактические материалы.',
-	},{
-		date: '18/04',
-		name: 'BMW открывает новую эру в автомобилестроении',
-		text: 'На крупнейшей промышленной выставке России 3D-решения впервые были представлены на отдельной площадке. Читайте наш подробный отчет!',
-	},{
-		date: '18/04',
-		name: 'ACADEMIA – новые 3D-сканеры и ПО для образования и науки',
-		text: 'Новинка Creaform – это комплект, включающий профессиональные 3D-сканеры, бесплатное интегрированное ПО и дидактические материалы.',
-	}]
+		const headerSlider = [{
+			category: 'Lorem ipsum dolor',
+			name: 'Maecenas eleifend dui diam, id vulputate tellus tempor et',
+			text: 'Aliquam egestas magna id orci blandit imperdiet.'
+		}, {
+			category: 'lacus odio convallis mi',
+			name: 'Sed ut tellus vitae erat hendrerit faucibus',
+			text: 'Aliquam egestas magna id orci blandit imperdiet.'
+		}]
 
-section.block.block-home-1
-	.container
-		h2.head-title.text-center
-			|Что мы делаем?
+		const oDirections = [{
+			name: 'Maecenas eleifend',
+			text: 'Morbi quis malesuada nulla'
+		},{
+			name: 'Dui diam',
+			text: 'Morbi quis malesuada nulla'
+		},{
+			name: 'Vulputate tellus',
+			text: 'Morbi quis malesuada nulla'
+		},{
+			name: 'Tempor et',
+			text: 'Morbi quis malesuada nulla'
+		}]
 
-section.block.block-home-2
-	.container
-		h2.head-title.text-center
-			|Почему выбирают нас?
-		
-	.row
-		each item, ind in oAdv 
-			.col-xl-3.col-6
-				.home-adv
-					.home-adv-num
-						|!{item.num}
-						+i-svg(item.icon)
-					h3.home-adv-name
-						|!{item.name}
-						
+		const oAdv = [{
+			num: 5,
+			icon: '3d-square',
+			name: 'Donec quis'
+		}, {
+			num: 100,
+			icon: '3d-disc',
+			name: 'Bibendum nibh'
+		}, {
+			num: 70,
+			icon: '3d-ball',
+			name: 'Sed ut tellus'
+		}, {
+			num: 30,
+			icon: '3d-pyr',
+			name: 'Erat hendrerit'
+		}]
+
+block banner
+	section.header-sliders-wrap
+		.header-slider-wrap
+			ul.header-slider#headerSlider
+
+				each item, ind in headerSlider
+					li
+						figure.header-slider-item
+							.header-slider-img(style=`background-image:url(upload/home-s-1-${(ind+1)}.jpg);`)
+								//-img(src='upload/home-s-1-'+ (ind+1) +'.jpg')
+
+							figcaption.header-slider-info
+								.container
+									.header-slider-info__inner
+
+										a.header-slider-info__category(href='javascript:void(0)')
+											|!{item.category}
+										h3.header-slider-info__title 
+											|!{item.name}
+										p.header-slider-info__text
+											|!{item.text}
+										a.header-slider-info__link(href='javascript:void(0)')
+											|More
+			.slick-navigation
+				.container
+					button.slick-prev
+						+i-svg('prev')
+					button.slick-next
+						+i-svg('next')
+
+block content
+	section.block.block-home-1
+		.container
+			.row
+				.col-xl-6.mb-5
+
+					h2.head-title.m-offset-1
+						|Donec at mollis turpis
+					p.mb-3
+						|Phasellus dui arcu, ornare at pretium eu, scelerisque et lacus. Fusce luctus posuere est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec turpis erat, accumsan ut porttitor vel, blandit pellentesque erat.
+					p.mb-5
+						|Aliquam sed augue sit amet lectus efficitur luctus id in nibh. Donec quis bibendum nibh. Sed ut tellus vitae erat hendrerit faucibus. Nam ornare quis neque id bibendum. In sagittis ultrices elit, ac condimentum sem tristique vitae. Proin ac metus urna. Aliquam egestas magna id orci blandit imperdiet. Cras lacinia dolor pharetra vehicula facilisis. Aliquam eleifend purus a efficitur euismod. Sed consequat vel ante nec vestibulum.
+
+					a.more-link(href='javascript:void(0)')
+						+i-svg('more-circle')
+						span More
+
+				.col-xl-6
+					img(src='img/partners-hands.png' alt=' ')
+
+	section.block.block-home-2
+		//-.block-bg
+			img(src='img/home-distributor-bg.jpg' alt=' ')
+
+		ul.directions-list
+			each item, ind in oDirections 
+				li
+					.directions-list-item
+
+						h3.directions-list-item__title
+							|!{item.name}
+						p.directions-list-item__text
+							|!{item.text}
+
+	section.block.block-home-3
+		.container
+			h2.head-title.text-uppercase.text-center
+				|Curabitur vel risus tristique
+
+			form.form.form-bid
+				.row
+					.col-lg-3
+						.selectbox
+							select.form-control
+								option Aenean sed tellus
+								option Duis vitae est
+					.col-lg-3
+						input.form-control(type='text' placeholder='Имя *')
+					.col-lg-3
+						input.form-control(type='email' placeholder='E-mail *')
+					.col-lg-3
+						button.btn.btn-outline-danger(type='submit') Отправить
+				.row
+					.col-12
+						p.text-after.text-right.mt-5 Quisque luctus lorem urna, at vulputate libero semper et. Nunc fringilla risus ut justo mattis, id varius  
+								a(href='javascript:void(0)') 
+									u quam mollis
+
+	section.block.block-home-4
+		.container
+			h2.head-title.text-center
+				|Fusce pellentesque diam
+			
+		.row
+			each item, ind in oAdv 
+				.col-xl-3.col-6
+					.home-adv
+						.home-adv__num
+							|!{item.num}
+							+i-svg(item.icon)
+						h3.home-adv__name
+							|!{item.name}				

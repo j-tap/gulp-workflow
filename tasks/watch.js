@@ -1,7 +1,7 @@
 gulp.task('watch', () => {
 
 	gulp.watch([dir.dev +'/pug/', dir.dev +'/**/*.pug'], () => {
-		runSequence('html-rebuild', 'livereload');
+		runSequence('html:update', 'livereload');
 	});
 
 	gulp.watch([dir.dev +'/scss/', dir.dev +'/scss/**/*.scss'], () => {
@@ -17,7 +17,7 @@ gulp.task('watch', () => {
 	});
 
 	gulp.watch([dir.dev +'/img/favicon'], () => {
-		runSequence('html-rebuild', 'livereload');
+		runSequence('html:update', 'livereload');
 	});
 
 	gulp.watch([dir.dev +'/img/svg/', dir.dev +'/img/**/*.svg'], () => {
@@ -25,7 +25,7 @@ gulp.task('watch', () => {
 	});
 
 	gulp.watch([dir.dev +'/upload/', dir.dev +'/upload/**/*.{png,gif,jpg}'], () => {
-		runSequence('imgUpload', 'livereload');
+		runSequence('img:upload', 'livereload');
 	});
 
 	gulp.watch([dir.dev +'/font/', dir.dev +'/font/**/*'], () => {

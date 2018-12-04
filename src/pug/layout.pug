@@ -1,6 +1,14 @@
 //- layout
 include mixins
 
+- 
+	const siteName = 'Site Name Company'
+
+block vars
+	- 
+		const page = ''
+		const pageTitle = ''
+
 doctype html
 html(lang='ru-RU')
 	head
@@ -9,11 +17,52 @@ html(lang='ru-RU')
 		meta(http-equiv='X-UA-Compatible' content='IE=edge')
 		link(href='css/main.css' rel='stylesheet')
 		block head
+			title !{pageTitle} | !{siteName}
+
+			block meta
+				//- Search Engine Meta Tags
+				meta(name='description', content='')
+				meta(name='author', content='Company')
+				meta(name='image', content='./img/favicons/android-chrome-512x512.png')
+				meta(name='contact', content='info@company.com')
+				//- Open Graph Meta Tags
+				meta(name='og:title', content='Company Name')
+				meta(name='og:description', content='')
+				meta(name='og:site_name', content='Company Name')
+				meta(name='og:image', content='./img/favicons/android-chrome-512x512.png')
+				meta(name='og:type', content='website')
+				meta(name='og:locale', content='ru_RU')
+				//- Schema.org Meta Tags
+				meta(itemprop='description', content='')
+				meta(itemprop='name', content='Company Name')
+				meta(itemprop='image', content='./img/favicons/android-chrome-512x512.png')
+				//- Twitter Meta Tags
+				meta(name='twitter:card', content='summary')
+				meta(name='twitter:title', content='Company Name')
+				meta(name='twitter:description', content='')
+			
 	body.loading
+		div(style='position:absolute; visibility:hidden; width:0; height:0;')
+			include svg
+				
 		.preloader#preloader
-			.preloader-clock
+			- let n = 0;
+			.sk-cube-grid
+				while n < 9
+					- n++
+					div(class='sk-cube sk-cube'+n)
 
 		block body
+			section.page
+						
+				block header
+					include header
+
+				main.main
+					block content
+
 		block footer
+			include footer
+
 		block modals
 		script(src='js/main.js' type='text/javascript')

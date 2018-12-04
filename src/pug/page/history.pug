@@ -1,0 +1,33 @@
+extends ../layout
+
+block vars
+	- 
+		const page = 'history'
+		const pageTitle = 'Aliquam eleifend purus a efficitur euismod. Sed consequat vel ante nec vestibulum'
+
+		const aDl = [
+			{
+				dt: 'Lorem',
+				dd: 'Phasellus consequat tempor arcu in tempor'
+			}, {
+				dt: 'Ipsum',
+				dd: ' Fusce pellentesque diam diam, vel consectetur erat tincidunt a. Donec at mollis turpis. Curabitur vel risus tristique, eleifend erat ac, pulvinar leo. Etiam gravida, arcu sed sollicitudin semper, mi lacus condimentum neque, sit amet eleifend velit leo ac erat.'
+			}, {
+				dt: 'Dolor',
+				dd: 'Vivamus sodales nisl non ipsum facilisis molestie. Nam vehicula augue eu scelerisque bibendum. Quisque non efficitur metus.'
+			}
+		]
+
+block banner
+	include ../banner
+
+block content
+	section.block.block-history-1
+		.container
+			img.img-full(src='upload/history/1.jpg' alt=' ')
+			dl.dl.row
+				each item, ind in aDl
+					dt.col-md-3 !{item.dt}
+					dd.col-md-9 !{item.dd}
+	
+	+form-consult(block-history-2)

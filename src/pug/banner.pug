@@ -1,0 +1,26 @@
+.header-bg
+	div(style='background-image: url(upload/header/'+ page + '.jpg)')
+	img.d-none(src='upload/header/'+ page + '.jpg' alt='')
+
+.header-info
+	.container
+		nav.header-breadcrumb(aria-label='breadcrumb')
+			ol.breadcrumb(itemscope itemtype='http://schema.org/BreadcrumbList')
+				li.breadcrumb-item(itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem')
+					a(href='javascript:void(0)' itemprop='item')
+						span(itemprop='name') Главная
+					span(itemprop='position' content='1')
+
+				li.breadcrumb-item(itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem')
+					a(href='javascript:void(0)' itemprop='item')
+						span(itemprop='name') Родительская страница
+					span(itemprop='position' content='2')
+
+				li.breadcrumb-item.active(aria-current='page' itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem')
+					span(itemprop='item')
+						span(itemprop='name') !{pageTitle}
+					span(itemprop='position' content='3')
+
+		h1.header-title !{pageTitle}
+		.header-text
+			block banner-text

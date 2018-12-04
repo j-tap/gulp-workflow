@@ -1,7 +1,8 @@
 mixin i-svg (name, mod)
 	- mod = mod || ''
+
 	svg(class='i-svg i-svg-'+ name +' '+ mod)
-		use(xlink:href='img/sprite.svg#i-svg-'+ name)
+		use(xlink:href='#i-svg-'+ name)
 
 mixin soc-list ()
 	ul.soc-list
@@ -17,3 +18,107 @@ mixin soc-list ()
 		li
 			a.soc-yt(href='#' target='_blank')
 				+i-svg('soc-yt')
+
+mixin form-consult (name)
+	- name = name || ''
+
+	section(class='block block-form-consult '+ name)
+		.container
+			h2.head-title.text-uppercase.text-center
+				|бесплатная консультация
+
+			form.form.form-consult
+				.row
+					.col-md-6
+						.form-group
+							label(for='consultName') Имя
+							input.form-control(type='text' id='consultName')
+					.col-md-6
+						.form-group
+							label(for='consultPhone') Телефон *
+							input.form-control(type='tel' id='consultPhone' maxlength='15')
+					.col-md-6
+						.form-group
+							label(for='consultCompany') Название компании
+							input.form-control(type='text' id='consultCompany')
+					.col-md-6
+						.form-group
+							label(for='consultEmail') E-mail *
+							input.form-control(type='email' id='consultEmail')
+					.col-12
+						.form-group
+							label(for='consultMsg') Сообщение
+							input.form-control(type='text' id='consultMsg')
+					.col-md-6
+						.form-group
+							p.text-after Нажимая на кнопку "Отправить", вы принимаете условия 
+								a(href='javascript:void(0)') 
+									u Политики обработки персональных данных
+					.col-md-6
+						.form-group
+							button.btn.btn-outline-danger(type='submit') Отправить заявку
+
+		.stages-decor.stages-decor--bottom
+
+mixin pagination ()
+	nav
+		ul.pagination
+			li.page-item.disabled
+				a.page-link(href='javascript:void(0)')
+					.row-icon
+						+i-svg('to-left')
+						span Назад
+			li.page-item
+				a.page-link(href='javascript:void(0)') 1
+			li.page-item.active
+				a.page-link(href='javascript:void(0)') 2
+			li.page-item
+				a.page-link(href='javascript:void(0)') 3
+			li.page-item
+				a.page-link(href='javascript:void(0)')
+					.row-icon
+						span Вперед
+						+i-svg('to-right')
+
+mixin aside ()
+	aside.aside#aside
+		each item, ind in oAside
+			h3.aside-title !{item.name}
+			ul
+				each itemSub, indSub in item.val
+					- let t = ind + '' + indSub;
+					- let c = (t == '11' || t == '21');
+					li.form-group-check
+						div.checkbox
+							input(type='checkbox' name='check'+ t id='check'+ t checked=c)
+							label(for='check'+ t)
+						label(for='check'+ t) !{itemSub}
+
+mixin slider (path, pathVideo)
+	.site-slider-wrap
+		ul.site-slider#materialsSlider
+			if pathVideo
+				li(data-title='')
+					figure.site-slider-item
+						.site-slider-item__img
+							img(src=pathVideo alt=' ')
+							button.btn.play-video(data-play='x0nN0-WAV78')
+
+			each item, ind in oSlides
+				li(data-title=item.title)
+					figure.site-slider-item
+						.site-slider-item__img
+							img(src='upload/'+ path +'/'+ (ind+1) +'.jpg' alt=item.title)
+		
+		.site-slider-lighting
+		.container
+			.site-slider-navigation
+				button.slick-prev
+					+i-svg('prev')
+				button.slick-next
+					+i-svg('next')
+
+	.site-slider-info
+		.container
+			.site-slider-info__cnt
+			.site-slider-info__title

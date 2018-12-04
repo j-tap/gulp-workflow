@@ -15,10 +15,13 @@ sourcemaps = require('gulp-sourcemaps');
 rename = require('gulp-rename');
 plumber = require('gulp-plumber');
 rimraf = require('rimraf');
+fs = require('fs');
 requireDir = require('require-dir');
 runSequence = require('run-sequence');
+debug = require('gulp-debug');
+prettify = require('gulp-jsbeautifier'); // formatter
 
-let tasks = requireDir(dir.tasks);
+const tasks = requireDir(dir.tasks);
 
 
 gulp.task('clean', (cb) => {
@@ -26,5 +29,6 @@ gulp.task('clean', (cb) => {
 });
 
 gulp.task('default', ['clean'], () => {
-	return runSequence('svg', ['font', 'img', 'imgUpload', 'html-build-full', 'scss', 'js'], 'watch', 'server');
+	return runSequence('svg', ['font', 'img', 'img:upload', 'html:build', 'scss', 'js'], 'watch', 'server');
 });
+

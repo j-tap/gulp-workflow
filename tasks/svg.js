@@ -4,11 +4,11 @@ gulp.task('svg', () => {
 	const cheerio = require('gulp-cheerio');
 
 	return gulp.src(dir.dev +'/img/svg/**/*.svg')
-		.pipe(svgmin({
+		/*.pipe(svgmin({
 			js2svg: {
 				pretty: true
 			}
-		}))
+		}))*/
 		/*.pipe(cheerio({
 			run: function ($) {
 				$('[fill^="#"], [fill^="rgba"]').removeAttr('fill');
@@ -38,8 +38,10 @@ gulp.task('svg', () => {
 			}, 
 			mode: {
 				symbol: {
-					sprite: '../../../build/img/sprite.svg',
+					sprite: '../../../src/pug/svg.pug' //dir.dev +'/pug/svg.pug'
+					//sprite: '../../../build/img/sprite.svg'
 					//render: {scss: {dest: '../../scss/svg-sprite.scss'}}
+					//example: false
 				}
 			}
 		}))
