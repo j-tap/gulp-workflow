@@ -1,6 +1,7 @@
 # Template for build project web pages
 
-### Uses:
+### INCLUDED:
+
 - Gulp builder
 - Pug template engine
 - SCSS styles
@@ -9,5 +10,9 @@
 - Compressing and minifying
 - Modularity
 
-`npm install`
-`gulp`
+
+### How to use:
+
+1. Cloned
+2. Install all packages `npm install`
+3. Run development and deploy `gulp`
