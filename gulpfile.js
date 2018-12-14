@@ -20,6 +20,7 @@ requireDir = require('require-dir');
 runSequence = require('run-sequence');
 debug = require('gulp-debug');
 prettify = require('gulp-jsbeautifier'); // formatter
+wait = require('gulp-wait');
 
 const tasks = requireDir(dir.tasks);
 

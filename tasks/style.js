@@ -4,6 +4,7 @@ gulp.task('scss', () => {
 	const sassGlob = require('gulp-sass-glob');
 	
 	return gulp.src(dir.dev +'/scss/main.scss')
+		.pipe(wait(500))
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(sassGlob())
