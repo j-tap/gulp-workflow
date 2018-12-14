@@ -1,7 +1,7 @@
 mixin i-svg (name, mod)
 	- mod = mod || ''
 
-	svg(class='i-svg i-svg-'+ name +' '+ mod)
+	svg(class='i-svg '+ name +' '+ mod)
 		use(xlink:href='#i-svg-'+ name)
 
 mixin soc-list ()
